@@ -18,7 +18,9 @@
   },
   "homepage": "https://github.com/aryapsinha/dininghall#readme",
   "dependencies": {
+    "ejs": "^2.9.0",
     "express": "^4.21.0",
     "path": "^0.12.7"
+    
   }
 }

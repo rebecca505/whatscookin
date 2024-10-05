@@ -4,7 +4,7 @@ var router = express.Router();
 
 router.get("/", function(req, res,){
     console.log("hello");
-    //res.render("index");
+    res.render("main");
 })
 
 module.exports = router; 
