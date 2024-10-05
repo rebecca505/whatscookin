@@ -1,0 +1,24 @@
+{
+  "name": "dininghall",
+  "version": "0.0.1",
+  "description": "An app that tracks meals from each dining hall and swipes/dining dollars",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aryapsinha/dininghall.git"
+  },
+  "author": "Arya Sinha, Shirley Deng",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aryapsinha/dininghall/issues"
+  },
+  "homepage": "https://github.com/aryapsinha/dininghall#readme",
+  "dependencies": {
+    "express": "^4.21.0",
+    "path": "^0.12.7"
+  }
+}
