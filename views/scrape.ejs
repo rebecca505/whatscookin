@@ -1,5 +1,10 @@
 <%- include('_header.ejs') %>
 
 <h1>Scrape</h1>
+<ul>
+    <% openDiningHalls.forEach(item => { %>
+        <li><%= item %></li>
+    <% }); %>
+</ul>
 
 <%- include('_footer.ejs') %>
