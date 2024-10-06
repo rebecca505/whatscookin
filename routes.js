@@ -7,6 +7,11 @@ router.get("/balance", function(req, res){
     res.render("balance");
 });
 
+router.get("/scrape", function(req, res){
+    console.log("scrape");
+    res.render("scrape");
+});
+
 router.get("/profile", function(req, res){
     console.log("profile");
     res.render("profile");
