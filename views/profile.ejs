@@ -1,5 +1,260 @@
 <%- include('_header.ejs') %>
 <style>
-    /*ALL CSS CODE MUST GO HERE*/
+    /* Container for the whole profile page */
+    .profile-page {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        min-height: 100vh; /* Make sure it covers the full viewport */
+    }
+
+    /* Circle, Name, and College */
+    .profile-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        height: 30%; /* Top 30% for circle, name, and college */
+        margin-top: 20px;
+    }
+
+    .circleNew {
+        width: 150px; /* Circle width */
+        height: 150px; /* Circle height */
+        background-color: #333; /* Circle color */
+        border-radius: 50%; /* Make it a circle */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Main content section below header */
+    .profile-content {
+        display: flex;
+        justify-content: space-between;
+        width: 100%; /* Full width for the content */
+        max-width: 1200px; /* Set a max width for responsiveness */
+        padding: 20px;
+        height: 60%; /* Take up 60% of the page */
+    }
+
+    /* Left section for favorite dishes */
+    .profile-fav-section {
+        width: 45%;
+    }
+
+    .profileBox {
+        background-color: #FAE2C3; /* Light background for the boxes */
+        border-radius: 5px; /* Rounded corners */
+        padding: 5px 10px; /* Minimal padding for tight fit */
+        margin-bottom: 10px; /* Space between boxes */
+        display: inline-block; /* Ensure it wraps tightly around the text */
+        font-size: 18px; /* Adjust font size for consistency */
+    }
+
+    /* Right section for dietary restrictions */
+    .profile-dietary-section {
+        width: 45%;
+        text-align: left; /* Align text in left */
+    }
+
+    .dietaryBox {
+        background-color: #FAE2C3; /* Same color as profile boxes */
+        border-radius: 5px; /* Rounded corners */
+        padding: 10px; /* Padding inside the box */
+    }
+
+    .dietaryBox label {
+        display: flex; /* Align checkbox and text */
+        align-items: center; /* Center vertically */
+        margin-bottom: 10px; /* Space between items */
+    }
+
+    .dietaryBox input[type="checkbox"] {
+        margin-right: 10px; /* Space between checkbox and text */
+    }
+
+    /* Modal styles */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        padding-top: 60px; /* Location of the box */
+    }
+
+    .modal-content {
+        background-color: #FAE2C3; /* Light background for the modal */
+        margin: 5% auto; /* 15% from the top and centered */
+        padding: 20px;
+        border: 1px solid #888; /* Border for the modal */
+        width: 300px; /* Width of the modal */
+        border-radius: 5px; /* Rounded corners */
+    }
+
+    .close {
+        color: #aaa; /* Close button color */
+        float: right; /* Right align */
+        font-size: 28px; /* Larger text */
+        font-weight: bold; /* Bold text */
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black; /* Change color on hover */
+        text-decoration: none; /* No underline */
+        cursor: pointer; /* Pointer cursor */
+    }
 </style>
+
+<div class="profile-page">
+    <!-- Profile Header: Circle, Name, College -->
+    <div class="profile-header">
+        <div class="circleNew"></div>
+        <h1>Your Name</h1>
+        <p>Barnard College</p>
+    </div>
+
+    <!-- Profile Content: Favorite Dishes and Dietary Restrictions -->
+    <div class="profile-content">
+        <div class="profile-fav-section">
+            <h1>Favorite Dishes</h1>
+            <div class="profileBox">Corn bread</div>
+            <div class="profileBox">Salmon</div>
+            <div class="profileBox">Tacos</div>
+            <div class="profileBox">+</div>
+            <h1>Favorite Dining Halls</h1>
+            <div class="profileBox" id="chefDons" style="display:none;">Chef Dons</div>
+            <div class="profileBox" id="chefMikes" style="display:none;">Chef Mikes</div>
+            <div class="profileBox" id="diana" style="display:none;">Diana</div>
+            <div class="profileBox" id="facShack" style="display:none;">Fac Shack</div>
+            <div class="profileBox" id="facultyHouse" style="display:none;">Faculty House</div>
+            <div class="profileBox" id="ferris" style="display:none;">Ferris</div>
+            <div class="profileBox" id="graceDodge" style="display:none;">Grace Dodge</div>
+            <div class="profileBox" id="hewitt">Hewitt</div> <!-- Hewitt checked by default -->
+            <div class="profileBox" id="jjs" style="display:none;">JJ's</div>
+            <div class="profileBox" id="johnJay" style="display:none;">John Jay</div>
+            <div class="profileBox" id="addDiningHall" style="cursor: pointer;">+</div>
+        </div>
+
+        <div class="profile-dietary-section">
+            <h1>Dietary Restrictions</h1>
+            <div class="dietaryBox">
+                <label>
+                    <input type="checkbox" onchange="toggleCheck(this)">
+                    <span>Vegetarian</span>
+                </label>
+                <label>
+                    <input type="checkbox" onchange="toggleCheck(this)">
+                    <span>Vegan</span>
+                </label>
+                <label>
+                    <input type="checkbox" onchange="toggleCheck(this)">
+                    <span>Halal</span>
+                </label>
+                <label>
+                    <input type="checkbox" onchange="toggleCheck(this)">
+                    <span>Gluten Free</span>
+                </label>
+                <label>
+                    <input type="checkbox" onchange="toggleCheck(this)">
+                    <span>Soy Free</span>
+                </label>
+                <label>
+                    <input type="checkbox" onchange="toggleCheck(this)">
+                    <span>Sesame Free</span>
+                </label>
+                <label>
+                    <input type="checkbox" onchange="toggleCheck(this)">
+                    <span>Wheat Free</span>
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Adding Dining Hall -->
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>Manage Favorite Dining Halls</h2>
+        <label>
+            <input type="checkbox" id="chefDonsCheckbox" onchange="toggleDiningHall('chefDons')">
+            <span>Chef Dons</span>
+        </label>
+        <label>
+            <input type="checkbox" id="chefMikesCheckbox" onchange="toggleDiningHall('chefMikes')">
+            <span>Chef Mikes</span>
+        </label>
+        <label>
+            <input type="checkbox" id="dianaCheckbox" onchange="toggleDiningHall('diana')">
+            <span>Diana</span>
+        </label>
+        <label>
+            <input type="checkbox" id="facShackCheckbox" onchange="toggleDiningHall('facShack')">
+            <span>Fac Shack</span>
+        </label>
+        <label>
+            <input type="checkbox" id="facultyHouseCheckbox" onchange="toggleDiningHall('facultyHouse')">
+            <span>Faculty House</span>
+        </label>
+        <label>
+            <input type="checkbox" id="ferrisCheckbox" onchange="toggleDiningHall('ferris')">
+            <span>Ferris</span>
+        </label>
+        <label>
+            <input type="checkbox" id="graceDodgeCheckbox" onchange="toggleDiningHall('graceDodge')">
+            <span>Grace Dodge</span>
+        </label>
+        <label>
+            <input type="checkbox" id="hewittCheckbox" onchange="toggleDiningHall('hewitt')" checked>
+            <span>Hewitt</span>
+        </label>
+        <label>
+            <input type="checkbox" id="jjsCheckbox" onchange="toggleDiningHall('jjs')">
+            <span>JJ's</span>
+        </label>
+        <label>
+            <input type="checkbox" id="johnJayCheckbox" onchange="toggleDiningHall('johnJay')">
+            <span>John Jay</span>
+        </label>        
+    </div>
+</div>
+
 <%- include('_footer.ejs') %>
+
+<script>
+    // Get the modal
+    var modal = document.getElementById("myModal");
+
+    // When the user clicks on the "+" button, open the modal
+    document.getElementById("addDiningHall").onclick = function() {
+        modal.style.display = "block";
+    }
+
+    // Close the modal
+    function closeModal() {
+        modal.style.display = "none";
+    }
+
+    // Function to toggle dining halls
+    function toggleDiningHall(diningHallId) {
+        const checkbox = document.getElementById(diningHallId + "Checkbox");
+        const diningHallBox = document.getElementById(diningHallId);
+
+        if (checkbox.checked) {
+            diningHallBox.style.display = "inline-block"; // Show the dining hall
+        } else {
+            diningHallBox.style.display = "none"; // Hide the dining hall
+        }
+        closeModal(); // Close the modal after toggling
+    }
+</script>
