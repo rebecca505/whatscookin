@@ -14,7 +14,7 @@ Figma -- interactive UI mockup
 - Decided on themes
 - Decided on effective flow
 - Formatted interface of each page
-- [link to figma design]
+- See design here: [https://www.figma.com/design/INP2TvUEzuNLPImHtver1n/DivHacks-Project?node-id=0-1&node-type=canvas&t=nPgVyobDpZ3cjVbn-0]]
 
 Programmed in EJS to do web development, pulling in styles from Bootstrap. - Code can be seen in this Github Repo
 - Broke our program into smaller, reusable components (ex: a navigation bar that was constant throughout).
