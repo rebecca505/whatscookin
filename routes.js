@@ -2,23 +2,20 @@
 var express = require("express");
 var router = express.Router();
 
-router.get("/", function(req, res){
-    console.log("main");
-    res.render("main");
-})
 router.get("/balance", function(req, res){
     console.log("balance");
     res.render("balance");
-})
+});
+
 router.get("/profile", function(req, res){
     console.log("profile");
     res.render("profile");
-})
-const puppeteer = require("puppeteer");
+});
 
+const puppeteer = require("puppeteer");
 // define route to render scraped data
-router.get("/scrape", async(req, res) => {
-    console.log("scraping!");
+router.get("/", async(req, res) => {
+    console.log("scraping in main!");
     try
     {   
         // launch Puppeteer and open new browser instance
@@ -43,7 +40,7 @@ router.get("/scrape", async(req, res) => {
 
             // select elements containing dining hall names
             return await page.evaluate((selector, barnard) => {
-                const items = [];
+                const halls = [];
                 const elements = document.querySelectorAll(selector);
 
                 elements.forEach(element => {
@@ -60,16 +57,17 @@ router.get("/scrape", async(req, res) => {
                             // only push if not closed
                             if (!status.includes("Closed")) 
                             {
-                                items.push(name);
+                                halls.push(name);
                             }
                         }
                     }
                     else // columbia webpage does not have this issue
                     {
-                        items.push(element.textContent.trim());
+                        halls.push(element.textContent.trim());
                     }
                 });
-                return items;
+
+                return halls;
             }, selector, barnard);
         };
 
@@ -90,10 +88,10 @@ router.get("/scrape", async(req, res) => {
         // close the browser
         await browser.close();
 
-        // send data to scrape.ejs template to display
-        res.render("scrape", { openDiningHalls });
+        // send data to main.ejs template to display
+        res.render("main", { openDiningHalls });
     }
-    catch (error)
+    catch(error)
     {
         console.error(error);
         res.status(500).send('Error scraping data');
