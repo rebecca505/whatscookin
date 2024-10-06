@@ -36,29 +36,51 @@ router.get("/scrape", async(req, res) => {
         });
 
         // function to scrape dining halls from specified URL & selector
-        const scrapeDiningHalls = async (url, selector) => {
+        const scrapeDiningHalls = async (url, selector, barnard) => {
             // navigate to Columbia dining webpage
             await page.goto(url, { waitUntil: "domcontentloaded" }); // ensure DOM is loaded
             await page.waitForSelector(selector);
 
             // select elements containing dining hall names
-            return await page.evaluate((selector) => {
+            return await page.evaluate((selector, barnard) => {
                 const items = [];
                 const elements = document.querySelectorAll(selector);
+
                 elements.forEach(element => {
-                    items.push(element.textContent.trim());
+                    if(barnard) // barnard webpage shows all dining halls if everything's closed
+                    {
+                        const nameElement = element.querySelector(".whats-open-tile_locationName_26Mtj");
+                        const statusElement = element.querySelector(".whats-open-tile_statusRed_FIhpq");
+
+                        if (nameElement && statusElement) 
+                        {
+                            const name = nameElement.textContent.trim();
+                            const status = statusElement.textContent.trim();
+            
+                            // only push if not closed
+                            if (!status.includes("Closed")) 
+                            {
+                                items.push(name);
+                            }
+                        }
+                    }
+                    else // columbia webpage does not have this issue
+                    {
+                        items.push(element.textContent.trim());
+                    }
                 });
                 return items;
-            }, selector);
+            }, selector, barnard);
         };
 
         // scrape from Columba & Barnard dining webpages
         const columbiaHalls = await scrapeDiningHalls("https://dining.columbia.edu/", 
-            `.location.clearfix.dining-location.open .name a, 
-             .location.clearfix.retail-location.open .name a`
+            ".location.clearfix.dining-location.open .name a, .location.clearfix.retail-location.open .name a", 
+            false
         );
         const barnardHalls = await scrapeDiningHalls("https://dineoncampus.com/barnard",
-            ".row.whats-open-tile_hours_8qXHw .whats-open-tile_locationName_26Mtj"
+            ".row.whats-open-tile_hours_8qXHw",
+            true
         );
         
         // combine data
