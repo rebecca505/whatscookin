@@ -10,7 +10,7 @@ What's Cookin' is an all-in-one dining hall recommendation tool and meal swipes/
 
 ## How we built it
 
-- figma -- interactive UI mockup
+- Figma -- interactive UI mockup
   - Decided on themes
   - Decided on effective flow
   - Formatted interface of each page
