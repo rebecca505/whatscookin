@@ -6,7 +6,14 @@ router.get("/", function(req, res){
     console.log("main");
     res.render("main");
 })
-
+router.get("/balance", function(req, res){
+    console.log("balance");
+    res.render("balance");
+})
+router.get("/profile", function(req, res){
+    console.log("profile");
+    res.render("profile");
+})
 const puppeteer = require("puppeteer");
 
 // define route to render scraped data
