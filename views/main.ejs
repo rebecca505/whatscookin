@@ -9,17 +9,33 @@
     }
     .box{
         background-color: peachpuff;
+        padding: 5px; /* Padding inside the boxes */
+        margin-bottom: 15px; /* Space between boxes */
     }
     .bubble{
         outline: 2px black none;
     }
     .shortbox{
-        background-color: #f8f9fa; /* Light background for the boxes */
+        background-color: #fadec5; /* Light background for the boxes */
         border: 1px solid #ddd; /* Light border */
         border-radius: 5px; /* Rounded corners */
-        padding: 15px; /* Padding inside the boxes */
+        padding: 5px; /* Padding inside the boxes */
         margin-bottom: 15px; /* Space between boxes */
-        height: 20%; /* Make boxes stretch vertically */
+        height: 40px; /* Make boxes stretch vertically */
+    }
+    .longbox{
+        background-color: #fadec5; /* Light background for the boxes */
+        border: 1px solid #ddd; /* Light border */
+        border-radius: 5px; /* Rounded corners */
+        padding: 5px; /* Padding inside the boxes */
+        margin-bottom: 15px; /* Space between boxes */
+        height: 100%; /* Make boxes stretch vertically */
+    }
+    h5{
+        text-align: center;
+    }
+    a{
+        color:black;
     }
 </style>
 
@@ -38,34 +54,48 @@
         <div class="col-6"> <!-- Each box will take half of the screen -->
             
             <div class="box">
-                <h5>Box 1</h5>
+                <h4>Box 1</h4>
                 <p>This is the content of box 1. It can contain any text you like.</p>
             </div>
-            <div class="box">
-                <h5>Box 2</h5>
-                <p>This is the content of box 2. It can also contain any text you like.</p>
-            </div>
-            <div class="box">
-                <h5>Box 3</h5>
-                <p>This is the content of box 3. You can add more information here.</p>
-            </div>
+           
             
         </div>
         
         <div class="col"> <!-- Right half of the screen -->
            
             <div class="shortbox">
-                <h5>Box 1</h5>
+                
+                <h5>119 Swipes</h5>
 
             </div>
+            <a href = "/balance">See More</a>
         </div>
         <div class="col">
             <div class=" shortbox">
-                <h5>Box 1</h5>
+                <h5>218 Points</h5>
                 
             </div>
+            
         </div>
         
+    </div>
+    <div class = "row">
+        <div class = "col-6">
+            <div class="box">
+                <h4>Box 2</h4>
+                <p>This is the content of box 2. It can also contain any text you like.</p>
+            </div>
+            
+            <div class="box">
+                <h4>Box 3</h4>
+                <p>This is the content of box 3. You can add more information here.</p>
+            </div>
+        </div>
+        <div class = "col">
+            <div class = "longbox">
+                <h5>What's Cookin</h5>
+            </div>
+        </div>
     </div>
 </div>
 
