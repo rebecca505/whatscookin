@@ -2,50 +2,51 @@
 
 ## Inspiration
 
-
+We identified three main issues that inspired us to create this all-in-one dining hall tracker. First, navigating to multiple different websites, especially since Barnard and Columbia dining are separate, to find the menus for each dining hall is a tedious process. Because dining hall hours differ on weekdays and weekends, it is also confusing to see what dining are open at a given time. Additionally, the balance for meal swipes and points on SSOL is difficult to find.
 
 ## What it does
 
-
+What's Cookin' is an all-in-one dining hall recommendation tool and meal swipes/points tracker. The main menu recommends dishes and the dining hall they are served at in real time based on dietary restrictions, favorite dishes, and favorite dining hall. Other components of the main menu include meal swipe and point balance and a list of currently open dining halls. The profile page is where the user can edit their preferences (favorite dishes, favorite dining halls, dietary restrictions), which the recommended dishes are based on.
 
 ## How we built it
 
 - figma -- interactive UI mockup
-  - decided on themes
-  - decided on effective flow
+  - Decided on themes
+  - Decided on effective flow
+  - Formatted interface of each page
   - [link to figma design]
  
 - Programmed in EJS to do web development, pulling in styles from Bootstrap. Code can be seen in Github Repo
      - Broke our program into smaller, reusable components (ex: a navigation bar that was constant throughout)
-     - built a clean UI with the implementation of multiple pages and a landing page with aesthetically pleasing access to What's Cookin's features
+     - Built a clean UI with the implementation of multiple pages and a landing page with aesthetically pleasing access to What's Cookin's features
  
 - Created algorithms in JavaScript to scrape various webpages, such as Columbia Dining. Used the inspect feature on Chrome to analyze the patterns of CSS behind each website, which we then fed in through an algorithm to get the appropriate data. 
 
-We first created an engaging UI mockup on Figma. We used various components and illustrations to show the layout and functionality of our final web app. You can find our Figma design here. After agreeing on our general layout and functions, we created a React-based website using the latest Next.js framework. We programmed in JavaScript, HTML, and CSS and pulled in data from .JSON files. All of our code can be seen on this GitHub repository. We used a combination of several different libraries to build a clean UI including MaterialUI and NextUI. We broke our program up into smaller, reusable components such as index.js (this was our landing/sign-up page), dashboard.js (this was the main dashboard where all classes are shown), and CourseButton.js (the single component representing a class). 
-
-To integrate our AI-powered recommendation engine, we used the Cohere LLM and some prompt engineering. We passed in the classes that the user has taken along with the other class elective options to a prompt that asks the LLM to identify keywords in the classes taken and recommend classes from the remaining classes that are similar to the classes taken. This allows users to get personalized suggestions based on their interests.
 
 ## Challenges we ran into
 
-- at the time of coding, many dining halls were closed, making it hard to test our scraping -- so we used the wayback machine
-- because of a need for a precise environment for our Node.js app to work properly, some of our computers couldn't run everything properly due to storage limitations. This taught us how to divide and conquer and lean on the support of our teammates 
+- At the time of coding, many dining halls were closed, making it hard to test our scraping -- so we used the wayback machine
+- Because of a need for a precise environment for our Node.js app to work properly, some of our computers couldn't run everything properly due to storage limitations. This taught us how to divide and conquer and lean on the support of our teammates 
 
-Overall, these challenges allowed us to grow, think outside of the box [idk say something smart here]
+Overall, we communicated with each other, learned on the fly, and thought outside of the box to overcome these challenges.
 
 ## Accomplishments that we're proud of
-- we were able to use Bootstrap to create our first web application -- tie JS with HTML/CSS effectively
+- We were able to use Bootstrap to create our first web application -- tie JS with HTML/CSS effectively
 - Effectively scrape on Columbia's Dining Website and Barnard's Dine on Campus Website to assess which dining halls are open in real time
 
 
 ## What we learned
-We learned how to create a web application using Node.js, and enhance our web development (HTML/CSS) skills with tools such as EJS and Bootstrap. In this process, we learned about how to manage packages and environments with GitHub. 
+We learned how to create a web application using Node.js, and enhance our web development (HTML/CSS) skills with tools such as EJS and Bootstrap. In this process, we learned how to manage packages and environments with GitHub. 
 
-Moreover, we learned about the logistics of web-scraping and how to use Axios API to help us scrape in JavaScript. We then learned how to use Puppeteer to scrape websites more dynamically. 
+Moreover, we learned about the logistics of web scraping and how to use Axios API and Cheerio to help us scrape in JavaScript. We then learned how to use Puppeteer to scrape websites more dynamically. 
 
 ## What's next for What's Cookin
-[take from slides]
+- Connect through SSOL to directly access remaining number of meal swipes/points
+- Use LLM to provide a broader range of food recommendations
+- Display upcoming dining events
+- Add a dining buddy feature
 
 # <bold>Environment Set Up</bold>
-brew install node
-npm install ejs
-npm i puppeteer
+brew install node <br>
+npm install ejs <br>
+npm i puppeteer <br>
