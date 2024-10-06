@@ -150,35 +150,36 @@
             <h1>Dietary Restrictions</h1>
             <div class="dietaryBox">
                 <label>
-                    <input type="checkbox" onchange="toggleCheck(this)">
+                    <input type="checkbox" id="vegetarian" onchange="toggleCheck(this)">
                     <span>Vegetarian</span>
                 </label>
                 <label>
-                    <input type="checkbox" onchange="toggleCheck(this)">
+                    <input type="checkbox" id="vegan" onchange="toggleCheck(this)">
                     <span>Vegan</span>
                 </label>
                 <label>
-                    <input type="checkbox" onchange="toggleCheck(this)">
+                    <input type="checkbox" id="halal" onchange="toggleCheck(this)">
                     <span>Halal</span>
                 </label>
                 <label>
-                    <input type="checkbox" onchange="toggleCheck(this)">
-                    <span>Gluten Free</span>
-                </label>
-                <label>
-                    <input type="checkbox" onchange="toggleCheck(this)">
+                    <input type="checkbox" id="kosher" onchange="toggleCheck(this)">
                     <span>Kosher</span>
                 </label>
                 <label>
-                    <input type="checkbox" onchange="toggleCheck(this)">
+                    <input type="checkbox" id="glutenFree" onchange="toggleCheck(this)">
+                    <span>Gluten Free</span>
+                </label>
+                <label>
+                    <input type="checkbox" id="nutFree" onchange="toggleCheck(this)">
                     <span>Nut Free</span>
                 </label>
                 <label>
-                    <input type="checkbox" onchange="toggleCheck(this)">
+                    <input type="checkbox" id="dairyFree" onchange="toggleCheck(this)">
                     <span>Dairy Free</span>
                 </label>
             </div>
         </div>
+
     </div>
 </div>
 
@@ -277,7 +278,25 @@
         });
     }
 
-    // Call loadDiningHallStates when the page loads
-    window.onload = loadDiningHallStates;
-</script>
+    // Function to toggle and save dietary restriction checkboxes
+    function toggleCheck(checkbox) {
+        const checkboxId = checkbox.id;
+        localStorage.setItem(checkboxId, checkbox.checked); // Save state to localStorage
+    }
 
+    // Function to load dietary restriction checkbox states on page load
+    function loadDietaryStates() {
+        const dietaryCheckboxes = ['vegetarian', 'vegan', 'halal', 'glutenFree', 'kosher', 'nutFree', 'dairyFree'];
+
+        dietaryCheckboxes.forEach(id => {
+            const savedState = localStorage.getItem(id) === 'true'; // Check saved value in localStorage
+            document.getElementById(id).checked = savedState; // Set the checkbox state
+        });
+    }
+
+    // Call loadDiningHallStates and loadDietaryStates when the page loads
+    window.onload = function() {
+        loadDiningHallStates(); // Load the saved dining hall states
+        loadDietaryStates(); // Load the saved checkbox states
+    };
+</script>
