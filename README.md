@@ -32,6 +32,8 @@ At the time of coding, many dining halls were closed, making it hard to test our
 Overall, we communicated with each other, learned on the fly, and thought outside of the box to overcome these challenges.
 
 ## Accomplishments that we're proud of
+This was the first hackathon for 75% of our team, so we are incredibly proud of the progress we made ideating and executing an idea from scratch. 
+
 We were able to use Bootstrap to create our first web application, tying JavaScript with HTML/CSS effectively
 
 With the help of Puppeteer, we effectively scraped Columbia's Dining Website and Barnard's Dine on Campus Website to assess which dining halls are open in real time
