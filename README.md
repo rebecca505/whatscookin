@@ -36,7 +36,7 @@ Overall, we communicated with each other, learned on the fly, and thought outsid
 
 
 ## What we learned
-We learned how to create a web application using Node.js, and enhance our web development (HTML/CSS) skills with tools such as EJS and Bootstrap. In this process, we learned how to manage packages and environments with GitHub. 
+We learned how to create a web application using Node.js, and enhance our web development (HTML/CSS) skills with tools such as EJS and Bootstrap. In this process, we learned how to manage packages and environments with GitHub. We also learned about local storage.
 
 Moreover, we learned about the logistics of web scraping and how to use Axios API and Cheerio to help us scrape in JavaScript. We then learned how to use Puppeteer to scrape websites more dynamically. 
 
