@@ -1,5 +1,74 @@
 <%- include('_header.ejs') %>
+<style>
+    .default{
+        font-family:'Times New Roman', Times, serif;
+       
+    }
+    h1{
+        font-size: 60px;
+    }
+    .box{
+        background-color: peachpuff;
+    }
+    .bubble{
+        outline: 2px black none;
+    }
+    .shortbox{
+        background-color: #f8f9fa; /* Light background for the boxes */
+        border: 1px solid #ddd; /* Light border */
+        border-radius: 5px; /* Rounded corners */
+        padding: 15px; /* Padding inside the boxes */
+        margin-bottom: 15px; /* Space between boxes */
+        height: 20%; /* Make boxes stretch vertically */
+    }
+</style>
 
-<h1>Welcome!</h1>
+<div class = "container default mx-auto p-2">
+
+    <h1>Hello, Your Name!</h1>
+</div>
+<br>
+<div class="container bubble">
+    <div class = "row">
+        <div class = "col"><h3>For You:</h3></div>
+        <div class = "col"><h3>My Balance:</h3></div>
+    </div>
+    <div class="row">
+        
+        <div class="col-6"> <!-- Each box will take half of the screen -->
+            
+            <div class="box">
+                <h5>Box 1</h5>
+                <p>This is the content of box 1. It can contain any text you like.</p>
+            </div>
+            <div class="box">
+                <h5>Box 2</h5>
+                <p>This is the content of box 2. It can also contain any text you like.</p>
+            </div>
+            <div class="box">
+                <h5>Box 3</h5>
+                <p>This is the content of box 3. You can add more information here.</p>
+            </div>
+            
+        </div>
+        
+        <div class="col"> <!-- Right half of the screen -->
+           
+            <div class="shortbox">
+                <h5>Box 1</h5>
+
+            </div>
+        </div>
+        <div class="col">
+            <div class=" shortbox">
+                <h5>Box 1</h5>
+                
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+
 
 <%- include('_footer.ejs') %>
