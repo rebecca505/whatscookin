@@ -54,8 +54,8 @@
         <div class="col-6"> <!-- Each box will take half of the screen -->
             
             <div class="box">
-                <h4>Box 1</h4>
-                <p>This is the content of box 1. It can contain any text you like.</p>
+                <h4>Corn Bread</h4>
+                <p>Ferris Booth Commons</p>
             </div>
            
             
@@ -82,22 +82,26 @@
     <div class = "row">
         <div class = "col-6">
             <div class="box">
-                <h4>Box 2</h4>
-                <p>This is the content of box 2. It can also contain any text you like.</p>
+                <h4>General Tsao's Chicken</h4>
+                <p>John Jay Dining Hall</p>
             </div>
             
             <div class="box">
-                <h4>Box 3</h4>
-                <p>This is the content of box 3. You can add more information here.</p>
+                <h4>Mac and Cheese</h4>
+                <p>Hewitt Dining Hall</p>
             </div>
         </div>
         <div class = "col">
             <div class = "longbox">
                 <h5>What's Cookin</h5>
                 <ul>
-                    <% openDiningHalls.forEach(item => { %>
-                        <li><%= item %></li>
-                    <% }); %>
+                    <% if (openDiningHalls && openDiningHalls.length > 0) { %>
+                        <% openDiningHalls.forEach(item => { %>
+                            <li><%= item %></li>
+                        <% }); %>
+                    <% } else { %>
+                        <li>No dining halls open. You're cooked.</li>
+                    <% } %>
                 </ul>
             </div>
         </div>
