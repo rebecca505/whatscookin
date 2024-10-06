@@ -17,9 +17,28 @@ router.get("/profile", function(req, res){
     res.render("profile");
 });
 
+router.get("/", function(req, res){
+    console.log("login");
+    res.render("login");
+});
+
+router.post('/login', (req, res) => {
+    const { username, password } = req.body;
+
+    // Here you would typically check the username and password against a database
+    // For this example, let's assume any non-empty username and password are valid
+    if (username && password) {
+        // Redirect to the main page after successful login
+        return res.redirect('/'); // Redirect to the main page
+    }
+
+    // If login fails, you can redirect back to login or show an error
+    res.redirect('/login'); // Redirect back to the login page
+});
+
 const puppeteer = require("puppeteer");
 // define route to render scraped data
-router.get("/", async(req, res) => {
+router.get("/main", async(req, res) => {
     console.log("scraping in main!");
     try
     {   
