@@ -71,7 +71,6 @@ router.get("/main", async(req, res) => {
                 elements.forEach(element => {
                     if(barnard) // barnard webpage shows all dining halls if everything's closed
                     {
-                        console.log("barnard");
                         const nameElement = element.querySelector(".whats-open-tile_locationName_26Mtj");
                         const statusElement = element.querySelector(".whats-open-tile_statusGreen_245bq");
 
@@ -81,7 +80,7 @@ router.get("/main", async(req, res) => {
                             const status = statusElement.textContent.trim();
             
                             // only push if not closed
-                            if (!status.includes("Open.")) 
+                            if (status.includes("Open")) 
                             {
                                 halls.push(name);
                             }
