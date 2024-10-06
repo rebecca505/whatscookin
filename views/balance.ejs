@@ -1,60 +1,99 @@
 <%- include('_header.ejs') %>
 <style>
-    /* ALL CSS CODE MUST GO HERE */
-    body {
-        font-family: Arial, sans-serif;
+    /* Container for the balance page */
+    .balance-page {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; /* Align items to the left */
+        padding: 20px; /* Add padding around the page */
+        min-height: 100vh; /* Ensure it covers the full viewport */
     }
 
-    h1 {
-        font-size: 60px;
-        text-align: center; /* Center the Balance header */
+    /* Title styling */
+    .balance-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px; /* Space below the title */
     }
 
-    .shortbox {
-        background-color: #f8f9fa; /* Light background for the boxes */
-        border: 1px solid #ddd; /* Light border */
+    /* Row for meal swipes and points */
+    .balance-row {
+        display: flex;
+        justify-content: space-between;
+        width: 100%; /* Full width for the row */
+        margin-bottom: 20px; /* Space below the row */
+    }
+
+    /* Box styling for meal swipes and points */
+    .balance-box {
+        background-color: #FAE2C3; /* Light background for boxes */
         border-radius: 5px; /* Rounded corners */
-        padding: 15px; /* Padding inside the boxes */
-        text-align: center; /* Center the text in the box */
-        width: 100%; /* Make sure the boxes take full width inside the column */
-        box-sizing: border-box; /* Include padding and border in the box's width */
+        padding: 15px; /* Padding inside the box */
+        width: 48%; /* Almost half width */
+        text-align: center; /* Center the text */
+        font-size: 18px; /* Font size for consistency */
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Add slight shadow for depth */
     }
 
-    .container {
-        display: flex; /* Enable Flexbox */
-        justify-content: center; /* Center the content horizontally */
-        gap: 20px; /* Add space between the two boxes */
-        margin-top: 20px; /* Space between the header and the boxes */
+    /* History section styling */
+    .history-section {
+        text-align: left; /* Align text to the left */
+        margin-top: 10px; /* Space above the history section */
     }
 
-    .col {
-        flex: 1; /* Make the columns take equal space */
-        max-width: 300px; /* Optional: Set a maximum width for the boxes */
+    .history-title {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 5px; /* Space below the history title */
+    }
+
+    .history-box {
+        background-color: #F7C6A1; /* Slightly darker background for history items */
+        border-radius: 5px; /* Rounded corners */
+        padding: 10px; /* Padding inside the history box */
+        margin-bottom: 5px; /* Space between history items */
+    }
+
+    /* List styling */
+    .balance-list {
+        list-style-type: none; /* Remove default list styles */
+        padding: 0; /* Remove padding */
+        width: 100%; /* Full width for the list */
+    }
+
+    .balance-list-item {
+        padding: 10px; /* Padding for list items */
+        background-color: #FAE2C3; /* Background color */
+        margin-bottom: 5px; /* Space between items */
+        border-radius: 5px; /* Rounded corners */
+        text-align: center; /* Center the text */
     }
 </style>
 
-<header>
-    <h1>Balance</h1>
-</header>
+<div class="balance-page">
+    <!-- Title for the Balance page -->
+    <div class="balance-title">Balance</div>
 
-<!-- Container holding both boxes -->
-<div class="container">
-    <div class="col">
-        <div class="shortbox">
-            <h5>Meal Swipes Left</h5>
+    <!-- Row for Meal Swipes and Points -->
+    <div class="balance-row">
+        <div class="balance-box">
+            119 Meal Swipes
+            <div class="history-section">
+                <div class="history-title">History</div>
+                <div class="history-box">Last Meal Swipe: 10/05/2024</div>
+            </div>
+        </div>
+        <div class="balance-box">
+            218 Points Left
+            <div class="history-section">
+                <div class="history-title">History</div>
+                <div class="history-box">Last Points Used: 10/01/2024</div>
+            </div>
         </div>
     </div>
-    <div class="col">
-        <div class="shortbox">
-            <h5>Points Left</h5>
-        </div>
-    </div>
-</div>
 
-<div class = "row">
-    <div class = "col"><h3>History</h3></div>
-    <div class = "col"><h3>History</h3></div>
+    <!-- List Section -->
+    
 </div>
 
 <%- include('_footer.ejs') %>
-
