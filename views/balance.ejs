@@ -1,5 +1,60 @@
 <%- include('_header.ejs') %>
 <style>
-    /*ALL CSS CODE MUST GO HERE*/
+    /* ALL CSS CODE MUST GO HERE */
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    h1 {
+        font-size: 60px;
+        text-align: center; /* Center the Balance header */
+    }
+
+    .shortbox {
+        background-color: #f8f9fa; /* Light background for the boxes */
+        border: 1px solid #ddd; /* Light border */
+        border-radius: 5px; /* Rounded corners */
+        padding: 15px; /* Padding inside the boxes */
+        text-align: center; /* Center the text in the box */
+        width: 100%; /* Make sure the boxes take full width inside the column */
+        box-sizing: border-box; /* Include padding and border in the box's width */
+    }
+
+    .container {
+        display: flex; /* Enable Flexbox */
+        justify-content: center; /* Center the content horizontally */
+        gap: 20px; /* Add space between the two boxes */
+        margin-top: 20px; /* Space between the header and the boxes */
+    }
+
+    .col {
+        flex: 1; /* Make the columns take equal space */
+        max-width: 300px; /* Optional: Set a maximum width for the boxes */
+    }
 </style>
+
+<header>
+    <h1>Balance</h1>
+</header>
+
+<!-- Container holding both boxes -->
+<div class="container">
+    <div class="col">
+        <div class="shortbox">
+            <h5>Meal Swipes Left</h5>
+        </div>
+    </div>
+    <div class="col">
+        <div class="shortbox">
+            <h5>Points Left</h5>
+        </div>
+    </div>
+</div>
+
+<div class = "row">
+    <div class = "col"><h3>History</h3></div>
+    <div class = "col"><h3>History</h3></div>
+</div>
+
 <%- include('_footer.ejs') %>
+
