@@ -94,6 +94,11 @@
         <div class = "col">
             <div class = "longbox">
                 <h5>What's Cookin</h5>
+                <ul>
+                    <% openDiningHalls.forEach(item => { %>
+                        <li><%= item %></li>
+                    <% }); %>
+                </ul>
             </div>
         </div>
     </div>
