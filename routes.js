@@ -24,7 +24,7 @@ router.post('/login', (req, res) => {
     // For this example, let's assume any non-empty username and password are valid
     if (username && password) {
         // Redirect to the main page after successful login
-        return res.redirect('/profile'); // Redirect to the main page
+        return res.redirect('/'); // Redirect to the main page
     }
 
     // If login fails, you can redirect back to login or show an error
