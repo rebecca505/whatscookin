@@ -5,7 +5,21 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        flex-direction: column; /* Stack title and login box vertically */
         height: 100vh; /* Full height of viewport */
+    }
+    .title-container {
+        text-align: center;
+        margin-bottom: 20px; /* Space below title */
+    }
+    .title-small {
+        font-size: 18px; /* Smaller font size for FIND OUT */
+        color: #555; /* Optional contrast color */
+        margin-bottom: 5px; /* Space between title lines */
+    }
+    .title-large {
+        font-size: 32px; /* Larger font size for Whats Cooking */
+        margin-top: 0; /* Remove default margin above */
     }
     .login-container {
         background-color: #fff; /* White background for the login box */
@@ -15,7 +29,7 @@
         width: 300px; /* Fixed width for the login box */
         text-align: center; /* Center text */
     }
-    h2 {
+    h1 {
         margin-bottom: 20px; /* Space below the heading */
     }
     input[type="text"],
@@ -40,10 +54,17 @@
     }
 </style>
 
+<!-- Title at the top of the page -->
+<div class="title-container">
+    <div class="title-small">FIND OUT</div>
+    <div class="title-large">What's Cookin'</div>
+</div>
+
+<!-- Centered login box -->
 <div class="login-container">
     <h1>Login</h1>
     <form action="/login" method="POST">
-        <input type="text" name="username" placeholder="Username" required>
+        <input type="text" name="username" placeholder="UNI" required>
         <input type="password" name="password" placeholder="Password" required>
         <a href="/main"><button type="button">Login</button></a>
     </form>
