@@ -1,4 +1,5 @@
 // for routing
+const { name } = require("ejs");
 var express = require("express");
 var router = express.Router();
 
@@ -60,7 +61,7 @@ router.get("/main", async(req, res) => {
         const scrapeDiningHalls = async (url, selector, barnard) => {
             // navigate to Columbia dining webpage
             await page.goto(url, { waitUntil: "domcontentloaded" }); // ensure DOM is loaded
-            await page.waitForSelector(selector);
+            await page.waitForSelector(selector, { timeout: 10000 });
 
             // select elements containing dining hall names
             return await page.evaluate((selector, barnard) => {
@@ -70,8 +71,9 @@ router.get("/main", async(req, res) => {
                 elements.forEach(element => {
                     if(barnard) // barnard webpage shows all dining halls if everything's closed
                     {
+                        console.log("barnard");
                         const nameElement = element.querySelector(".whats-open-tile_locationName_26Mtj");
-                        const statusElement = element.querySelector(".whats-open-tile_statusRed_FIhpq");
+                        const statusElement = element.querySelector(".whats-open-tile_statusGreen_245bq");
 
                         if (nameElement && statusElement) 
                         {
@@ -79,7 +81,7 @@ router.get("/main", async(req, res) => {
                             const status = statusElement.textContent.trim();
             
                             // only push if not closed
-                            if (!status.includes("Closed")) 
+                            if (!status.includes("Open.")) 
                             {
                                 halls.push(name);
                             }
@@ -97,7 +99,7 @@ router.get("/main", async(req, res) => {
 
         // scrape from Columba & Barnard dining webpages
         const columbiaHalls = await scrapeDiningHalls("https://dining.columbia.edu/", 
-            ".location.clearfix.dining-location.open .name a, .location.clearfix.retail-location.open .name a", 
+            ".location.clearfix.dining-location.open .name a, .location.clearfix.dining-location.closing .name a, .location.clearfix.retail-location.open .name a, .location.clearfix.retail-location.closing .name a", 
             false
         );
         const barnardHalls = await scrapeDiningHalls("https://dineoncampus.com/barnard",
