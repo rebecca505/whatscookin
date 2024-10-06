@@ -110,4 +110,52 @@
 
 
 
+<script>
+    // Function to load the state of dining halls and display them
+    function loadDiningHallStates() {
+        // Array of dining halls
+        const diningHalls = [
+            { id: 'hewitt', name: "Hewitt Dining Hall" },
+            { id: 'johnJay', name: "John Jay Dining Hall" },
+            { id: 'ferris', name: "Ferris Booth Commons" },
+            // Add more dining halls here as needed
+        ];
+    
+        const ul = document.getElementById('diningHallList');
+        ul.innerHTML = ''; // Clear existing list
+    
+        // Check which dining halls are checked and push to arrays
+        const checkedHalls = [];
+        const uncheckedHalls = [];
+    
+        diningHalls.forEach(hall => {
+            const hallElement = document.getElementById(hall.id);
+            if (hallElement) {
+                // Assuming the checkbox is checked (you will need to implement the checkbox)
+                const isChecked = hallElement.querySelector('input[type="checkbox"]')?.checked;
+    
+                if (isChecked) {
+                    checkedHalls.push(hall.name);
+                } else {
+                    uncheckedHalls.push(hall.name);
+                }
+            }
+        });
+    
+        // Combine checked and unchecked lists
+        const orderedHalls = [...checkedHalls, ...uncheckedHalls];
+    
+        // Populate the unordered list with dining hall names
+        orderedHalls.forEach(hallName => {
+            const li = document.createElement('li');
+            li.textContent = hallName;
+            ul.appendChild(li);
+        });
+    }
+    
+    // Load dining hall states when the window loads
+    window.onload = loadDiningHallStates;
+    </script>
+
+
 <%- include('_footer.ejs') %>

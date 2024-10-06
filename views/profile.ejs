@@ -74,6 +74,7 @@
 
     .dietaryBox input[type="checkbox"] {
         margin-right: 10px; /* Space between checkbox and text */
+        cursor: pointer; 
     }
 
     /* Modal styles */
@@ -137,9 +138,9 @@
             <div class="profileBox" id="diana" style="display:none;">Diana</div>
             <div class="profileBox" id="facShack" style="display:none;">Fac Shack</div>
             <div class="profileBox" id="facultyHouse" style="display:none;">Faculty House</div>
-            <div class="profileBox" id="ferris" style="display:none;">Ferris</div>
+            <div class="profileBox" id="ferris">Ferris</div>
             <div class="profileBox" id="graceDodge" style="display:none;">Grace Dodge</div>
-            <div class="profileBox" id="hewitt">Hewitt</div> <!-- Hewitt checked by default -->
+            <div class="profileBox" id="hewitt" style="display:none;">Hewitt</div> <!-- Hewitt checked by default -->
             <div class="profileBox" id="jjs" style="display:none;">JJ's</div>
             <div class="profileBox" id="johnJay" style="display:none;">John Jay</div>
             <div class="profileBox" id="addDiningHall" style="cursor: pointer;">+</div>
@@ -166,15 +167,15 @@
                 </label>
                 <label>
                     <input type="checkbox" onchange="toggleCheck(this)">
-                    <span>Soy Free</span>
+                    <span>Kosher</span>
                 </label>
                 <label>
                     <input type="checkbox" onchange="toggleCheck(this)">
-                    <span>Sesame Free</span>
+                    <span>Nut Free</span>
                 </label>
                 <label>
                     <input type="checkbox" onchange="toggleCheck(this)">
-                    <span>Wheat Free</span>
+                    <span>Dairy Free</span>
                 </label>
             </div>
         </div>
@@ -207,7 +208,7 @@
             <span>Faculty House</span>
         </label>
         <label>
-            <input type="checkbox" id="ferrisCheckbox" onchange="toggleDiningHall('ferris')">
+            <input type="checkbox" id="ferrisCheckbox" onchange="toggleDiningHall('ferris')" checked>
             <span>Ferris</span>
         </label>
         <label>
@@ -215,7 +216,7 @@
             <span>Grace Dodge</span>
         </label>
         <label>
-            <input type="checkbox" id="hewittCheckbox" onchange="toggleDiningHall('hewitt')" checked>
+            <input type="checkbox" id="hewittCheckbox" onchange="toggleDiningHall('hewitt')">
             <span>Hewitt</span>
         </label>
         <label>
@@ -252,9 +253,31 @@
 
         if (checkbox.checked) {
             diningHallBox.style.display = "inline-block"; // Show the dining hall
+            localStorage.setItem(diningHallId, "true"); // Save checked state
         } else {
             diningHallBox.style.display = "none"; // Hide the dining hall
+            localStorage.setItem(diningHallId, "false"); // Save unchecked state
         }
         closeModal(); // Close the modal after toggling
     }
+
+    // Function to load dining hall states from local storage
+    function loadDiningHallStates() {
+        const diningHalls = ["chefDons", "chefMikes", "diana", "facShack", "facultyHouse", "ferris", "graceDodge", "hewitt", "jjs", "johnJay"];
+        diningHalls.forEach(diningHallId => {
+            const isChecked = localStorage.getItem(diningHallId) === "true";
+            const checkbox = document.getElementById(diningHallId + "Checkbox");
+            const diningHallBox = document.getElementById(diningHallId);
+
+            // Set checkbox state
+            checkbox.checked = isChecked;
+
+            // Show or hide the dining hall box based on checkbox state
+            diningHallBox.style.display = isChecked ? "inline-block" : "none";
+        });
+    }
+
+    // Call loadDiningHallStates when the page loads
+    window.onload = loadDiningHallStates;
 </script>
+
