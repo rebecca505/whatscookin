@@ -17,7 +17,7 @@ router.get("/profile", function(req, res){
     res.render("profile");
 });
 
-router.get("/login", function(req, res){
+router.get("/", function(req, res){
     console.log("login");
     res.render("login");
 });
@@ -38,7 +38,7 @@ router.post('/login', (req, res) => {
 
 const puppeteer = require("puppeteer");
 // define route to render scraped data
-router.get("/", async(req, res) => {
+router.get("/main", async(req, res) => {
     console.log("scraping in main!");
     try
     {   
