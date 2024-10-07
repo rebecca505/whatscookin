@@ -20,7 +20,7 @@ Programmed in EJS to do web development, pulling in styles from Bootstrap. - Cod
 - Broke our program into smaller, reusable components (ex: a navigation bar that was constant throughout).
 - Built a clean UI with the implementation of multiple pages and a landing page with aesthetically pleasing access to What's Cookin's features.
 
-Created algorithms in JavaScript to scrape various webpages, such as Columbia Dining.
+Created algorithms in JavaScript via Puppeteer to scrape various webpages, such as Columbia Dining.
 
 Used the inspect feature on Chrome to analyze the patterns of CSS behind each website, which we then fed in through an algorithm to get the appropriate data.
 
