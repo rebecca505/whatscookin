@@ -39,6 +39,7 @@ router.post('/login', (req, res) => {
 
 const puppeteer = require("puppeteer");
 // define route to render scraped data
+console.log("Setting up routes...");
 router.get("/main", async (req, res) => {
     console.log("scraping in main!");
     try {
@@ -118,6 +119,7 @@ router.get("/main", async (req, res) => {
         res.status(500).send('Error scraping data'); // Handle errors and send a response
     }
 });
+console.log("Routes set up complete.");
 
 // Export the router
 module.exports = router;
