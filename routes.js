@@ -3,22 +3,22 @@ const { name } = require("ejs");
 var express = require("express");
 var router = express.Router();
 
-router.get("/balance", function(req, res){
+router.get("/balance", function(req, res) {
     console.log("balance");
     res.render("balance");
 });
 
-router.get("/scrape", function(req, res){
+router.get("/scrape", function(req, res) {
     console.log("scrape");
     res.render("scrape");
 });
 
-router.get("/profile", function(req, res){
+router.get("/profile", function(req, res) {
     console.log("profile");
     res.render("profile");
 });
 
-router.get("/", function(req, res){
+router.get("/", function(req, res) {
     console.log("login");
     res.render("login");
 });
@@ -46,7 +46,7 @@ router.get("/main", async (req, res) => {
         // Launch Puppeteer with additional options for Render environment
         const browser = await puppeteer.launch({
             headless: true,
-            args: ['--no-sandbox', '--disable-setuid-sandbox'] // Additional launch options
+            args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-gpu'] // Additional launch options
         });
         const page = await browser.newPage();
 
@@ -63,10 +63,12 @@ router.get("/main", async (req, res) => {
 
         // Function to scrape dining halls from specified URL & selector
         const scrapeDiningHalls = async (url, selector, barnard) => {
-            // Navigate to the specified URL
+            console.log("Navigating to " + url + "...");
             await page.goto(url, { waitUntil: "domcontentloaded" }); // Ensure DOM is loaded
+            console.log("Columbia page loaded, waiting for selector...");
             await page.waitForSelector(selector, { timeout: 10000 }); // Wait for selector
 
+            console.log("Scraping dining halls...");
             // Select elements containing dining hall names
             return await page.evaluate((selector, barnard) => {
                 const halls = [];
@@ -96,14 +98,19 @@ router.get("/main", async (req, res) => {
         };
 
         // Scrape from Columbia & Barnard dining webpages
-        const columbiaHalls = await scrapeDiningHalls("https://dining.columbia.edu/", 
+        const columbiaHalls = await scrapeDiningHalls(
+            "https://dining.columbia.edu/", 
             ".location.clearfix.dining-location.open .name a, .location.clearfix.dining-location.closing .name a, .location.clearfix.retail-location.open .name a, .location.clearfix.retail-location.closing .name a", 
             false
         );
-        const barnardHalls = await scrapeDiningHalls("https://dineoncampus.com/barnard",
+        console.log("Columbia dining halls scraped:", columbiaHalls);
+        
+        const barnardHalls = await scrapeDiningHalls(
+            "https://dineoncampus.com/barnard",
             ".row.whats-open-tile_hours_8qXHw",
             true
         );
+        console.log("Barnard dining halls scraped:", barnardHalls);
 
         // Combine data from both dining halls
         const openDiningHalls = [...columbiaHalls, ...barnardHalls];
@@ -115,9 +122,10 @@ router.get("/main", async (req, res) => {
         // Send scraped data to main.ejs template for rendering
         res.render("main", { openDiningHalls });
     } catch (error) {
-        console.error(error);
+        console.error("Error occurred during scraping:", error.message); // Log the error message
+        console.error("Stack trace:", error.stack); // Log the stack trace
         res.status(500).send('Error scraping data'); // Handle errors and send a response
-    }
+    }    
 });
 console.log("Routes set up complete.");
 
